@@ -1,0 +1,63 @@
+schema {
+    query:Query
+}
+
+type Query {
+    invoices: [Invoice]!
+    invoice(id: Int!): Invoice!
+    products: [Product]!
+    product(id: Int!): Product!
+}
+
+type Mutation {
+    createInvoice(invoice: CreateInvoiceInput!): Invoice!
+    updateInvoice(invoice: UpdateInvoiceInput!): Invoice!
+    deleteInvoice(id: Int!): Int!
+
+    createProduct(product: CreateProductInput!): Product!
+    updateProduct(product: UpdateProductInput!): Product!
+    deleteProduct(id: Int!): Int!
+}
+
+type Invoice {
+    id: ID!
+    customer: String!
+    price: String!
+    tax: String!
+    products: [ID]!
+}
+
+type Product {
+    id: ID!
+    name: String!
+    description: String!
+    value: String!
+}
+
+input CreateInvoiceInput {
+    customer: String!
+    price: String!
+    tax: String!
+    products: [ID]!
+}
+
+input UpdateInvoiceInput {
+     id: Int!
+     customer: String!
+     price: String!
+     tax: String!
+     products: [ID]!
+}
+
+input CreateProductInput {
+    name: String
+    description: String
+    value: Int
+}
+
+input UpdateProductInput {
+    id: Int
+    name: String
+    description: String
+    value: Int
+}
